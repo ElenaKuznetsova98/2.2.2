@@ -1,0 +1,17 @@
+<p></p>
+<div>
+    <table style="width: 360px; background-color: #e6e6fa;" border="1"><caption></caption>
+        <tbody>
+        <tr>
+            <th style="width: 120px;">Model</th>
+            <th style="width: 120px;">Age</th>
+            <th style="width: 120px;">Color</th>
+        </tr>
+        <tr th:each="car : ${carListNew}">
+            <td th:utext="${car.getModel()}" style="width: 120px;">...</td>
+            <td th:utext="${car.getAge()}" style="width: 120px;">...</td>
+            <td th:utext="${car.getColor()}" style="width: 120px;">...</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
