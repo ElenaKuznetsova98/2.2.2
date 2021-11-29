@@ -1,17 +1,20 @@
 package web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import web.model.Car;
+import web.Service.CarService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Controller
-public class HelloController {
+public class CarController {
+	@Autowired
+	private CarService carService;
 
 	@GetMapping(value = "/index")
 	public String printWelcome(ModelMap model) {
@@ -25,17 +28,8 @@ public class HelloController {
 	}
 
 	@GetMapping(value = "/cars")
-	public String getListCarByCount(@RequestParam(value = "count") int count, ModelMap modelMap){
-
-		List<Car> carList = new ArrayList<>();
-		carList.add(new Car("Ford Focus", "black", 2000));
-		carList.add(new Car("Ford", "white", 2005));
-		carList.add(new Car("Audi", "blue", 2016));
-		carList.add(new Car("BMW", "yellow", 2020));
-		carList.add(new Car("Volvo", "grey", 2010));
-
-		List <Car> carListNew = carList.stream().limit(count).collect(Collectors.toList());
-		modelMap.addAttribute("carListNew", carListNew);
+	public String getListCarByCount(@RequestParam (value = "count") int count, ModelMap modelMap){
+		modelMap.addAttribute("carList", carService.getCars(count));
 		return "cars";
 	}
 }

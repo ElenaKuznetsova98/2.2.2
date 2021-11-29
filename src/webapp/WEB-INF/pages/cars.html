@@ -7,7 +7,7 @@
             <th style="width: 120px;">Age</th>
             <th style="width: 120px;">Color</th>
         </tr>
-        <tr th:each="car : ${carListNew}">
+        <tr th:each="car : ${carList}">
             <td th:utext="${car.getModel()}" style="width: 120px;">...</td>
             <td th:utext="${car.getAge()}" style="width: 120px;">...</td>
             <td th:utext="${car.getColor()}" style="width: 120px;">...</td>
